@@ -1,0 +1,85 @@
+name: Acadex LMS Cloud CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ========================================================
+  # 1. Cloud Test & Security Verification
+  # ========================================================
+  test:
+    name: Run Cloud Tests & Security Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Server Dependencies
+        working-directory: ./server
+        run: npm install
+
+      - name: Run Automated Backend & Security Test Suite
+        working-directory: ./server
+        run: npm test
+
+  # ========================================================
+  # 2. Cloud Client Build Verification
+  # ========================================================
+  build-client:
+    name: Build React Client in Cloud
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Client Dependencies
+        working-directory: ./client
+        run: npm install
+
+      - name: Compile Production Bundle in Cloud
+        working-directory: ./client
+        run: npm run build
+
+  # ========================================================
+  # 3. Supabase Cloud Database Verification
+  # ========================================================
+  database-check:
+    name: Verify Database Schema & Migrations
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        working-directory: ./server
+        run: npm install
+
+      - name: Execute Migration Runner in Cloud
+        working-directory: ./server
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node src/db/migrateSupabase.js
