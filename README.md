@@ -3,11 +3,14 @@ Acadex LMS (LayerIQ) — Next-Gen Learning Management System
 Acadex LMS is a full-featured, modern Learning Management & Placement Preparation System built for students, instructors, and administrators. It integrates live web data, interactive code sandboxes, dynamic quizzes, real-time placement tracking, and an AI-assisted ATS Resume Architect.
 
 🌟 Key Highlights & Features
+
 🎓 Academic & Learning Ecosystem
 Courses & Global MOOCs (course.html): Browse internal masterclasses alongside curated external programs (Harvard CS50, MIT OCW, FullStackOpen, Fast.ai) with syllabus previews and enrollment.
+
 Interactive Video Classrooms (classes.html): Streamed lecture masterclasses with integrated key takeaways and progress milestones.
 Multi-Language Online Code Sandbox (compiler.html): Real-time code execution sandbox for Python 3 and JavaScript with stdout, stderr, and benchmark metrics.
 Dynamic Online Question Bank (quiz.html): Live trivia & CS assessment bank powered by the Open Trivia Database API with customizable difficulties, immediate score breakdowns, and XP rewards.
+
 💼 Career & Placement Readiness
 AI ATS Resume Architect (resume-builder.html):
 Live split-screen interface with instant A4 sheet rendering on every keystroke.
@@ -16,11 +19,14 @@ Real-time ATS strength scoring (0–100%) checking keyword density, contact metr
 AI Bullet Point Optimizer converting basic responsibilities into high-impact achievements.
 Clean PDF export via native A4 @media print rules.
 Live Tech Placements Feed (placement.html): Real-time remote and tech job listings pulled live from the Remotive API with role filters, keyword search, and application tracking.
+
 🛠️ Administrative & Portal Features
+
 Student Dashboard (student.html): Academic tracking, enrolled courses, attendance metrics, and live tech news stream from Dev.to.
 Faculty Portal (faculty.html, faculty-classes.html): Manage classes, publish assignments, grade quizzes, and upload lecture notes.
 Admin Command Center (admin.html, admin-analytics.html): Manage departments, analyze student performance, and view system health metrics.
 PWA Ready (service-worker.js, manifest.json): Offline caching support for uninterrupted learning.
+
 📂 Project Structure
 acadex-lms/
 ├── index.html               # Landing page with live dev news feed
@@ -55,6 +61,7 @@ acadex-lms/
 │   └── package.json
 │
 └── client/                  # Vite-based client modules
+
 🚀 Getting Started & Running Locally
 Quick Start (Full Stack with Root Scripts)
 Install Dependencies:
@@ -74,6 +81,7 @@ npm run client
 Static HTML Pages (Alternative Frontend): Open index.html or student.html directly in any modern browser or run:
 
 npx serve .
+
 🔐 Demo Credentials (RBAC Authenticated)
 All demo accounts are secured with bcrypt password hashing (demo123) and issue signed JSON Web Tokens (JWT):
 
@@ -84,17 +92,22 @@ HR Recruiter	hr@demo.com	demo123	Talent pipeline, resume review, candidate track
 Placement Officer	placement@demo.com	demo123	Campus drives, interview rounds, placement analytics
 System Admin	superadmin@demo.com	demo123	Enterprise metrics, user administration, global audit
 Mentor	mentor@demo.com	demo123	Code reviews, discussion forums, doubt guidance
+
 🛡️ Security Hardening Overview
+
 Sterile Code Execution Sandbox: JavaScript runs in an isolated VM context with process and host reflection blocked; Python runs with strict timeout (3.0s) and static import filters blocking OS/subprocess/socket commands.
 Strict RBAC Enforcement: Role-based access control middleware (requireRole) protects admin, faculty, and grading endpoints.
 Zero Role Escalation: Self-registration enforces student role; admin roles must be assigned via administrative authorization.
 Real JWT Authentication: Signed tokens with jsonwebtoken replacing legacy unverified tokens.
 Data Persistence: File-backed database store in server/data/lms_store.json persisting state across server restarts.
 HTTP Security & Rate Limiting: Configured with helmet, custom CORS whitelist, and express-rate-limit.
+
 🌐 External APIs & Data Sources Integrated
+
 Remotive API: Live remote tech and developer job openings.
 Open Trivia DB: Real-time computer science and tech quiz bank.
 Dev.to API: Trending developer articles and tutorials.
 [Harvard CS50 / MIT OCW]: Curated MOOC curriculum data and video masterclasses.
+
 📄 License
 This project is open source and available under the MIT License.
