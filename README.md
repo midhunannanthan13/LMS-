@@ -1,4 +1,3 @@
-
 Acadex LMS (LayerIQ) — Next-Gen Learning Management System
 
 Acadex LMS is a full-featured, modern Learning Management & Placement Preparation System built for students, instructors, and administrators. It integrates live web data, interactive code sandboxes, dynamic quizzes, real-time placement tracking, and an AI-assisted ATS Resume Architect.
@@ -97,6 +96,5 @@ Remotive API: Live remote tech and developer job openings.
 Open Trivia DB: Real-time computer science and tech quiz bank.
 Dev.to API: Trending developer articles and tutorials.
 [Harvard CS50 / MIT OCW]: Curated MOOC curriculum data and video masterclasses.
-
 📄 License
 This project is open source and available under the MIT License.
